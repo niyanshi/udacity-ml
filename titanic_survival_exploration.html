@@ -13144,7 +13144,7 @@ Fill in the missing code below so that the function will make this prediction.<b
         <span class="k">if</span> <span class="n">passenger</span><span class="o">.</span><span class="n">Sex</span> <span class="o">==</span> <span class="s2">&quot;female&quot;</span><span class="p">:</span>
             <span class="n">predictions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">passenger</span><span class="o">.</span><span class="n">Age</span> <span class="o">&lt;=</span> <span class="mi">10</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">passenger</span><span class="o">.</span><span class="n">Age</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">:</span>
                 <span class="n">predictions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>                    
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">predictions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
@@ -13260,7 +13260,16 @@ Make sure to keep track of the various features and conditions you tried before 
     <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">passenger</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
         
         <span class="c1"># Remove the &#39;pass&#39; statement below </span>
-        <span class="c1"># and write your prediction conditions here</span>
+        <span class="c1"># For women:</span>
+        <span class="c1"># 1. People with lower classes have less chance to suvive. 2. People with more siblings and children</span>
+        <span class="c1"># have less chance to suvive. so i just use SibSp and Parch as parameter and adjust the value </span>
+        <span class="c1"># to get a better result.</span>
+        <span class="c1"># For man: 1. people with no age is highly possible to be died, because we have no </span>
+        <span class="c1"># information about them. 2. people with higher classes may have more chance to suvive. 3. children </span>
+        <span class="c1"># having parents with them and no siblings may have more chance to suvive (parents will help them).</span>
+        <span class="c1"># 4. Old people is hard to suvive. </span>
+        <span class="c1"># 5. i hacked the data and found the man with age 80 survived.</span>
+        <span class="c1">#</span>
         <span class="k">if</span> <span class="n">passenger</span><span class="o">.</span><span class="n">Parch</span> <span class="o">&gt;=</span> <span class="mi">4</span> <span class="ow">and</span> <span class="n">passenger</span><span class="o">.</span><span class="n">Age</span> <span class="o">&gt;</span> <span class="mi">18</span><span class="p">:</span>
             <span class="n">predictions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
@@ -13366,6 +13375,7 @@ Make sure to keep track of the various features and conditions you tried before 
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>House price.</p>
 <p>House price can be reflected by GDP of the year and average age of citizens.</p>
+<p>In terms of how average Age of the city affects house price, people usually by house at the age around 30 in our county. So the more young people a city has, the more demand on house is. So the age of citizens will affect the supply and demand. Maybe I should use the term "aging degree"?</p>
 
 </div>
 </div>
